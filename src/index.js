@@ -6,17 +6,17 @@
 
 // todas as configuraçoes devem ser passadas via environment variables
 const PORT = process.env.PORT || 3000;
+const router = require('./routes');
 
 const Koa = require('koa');
-const Router = require('koa-router');
+const server = new Koa();
 
-const koa = new Koa();
-var router = new Router();
+server.use(router.routes());
+server.use(router.allowedMethods());
 
-koa
-.use(router.routes())
-.use(router.allowedMethods());
+server.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
 
-const server = koa.listen(PORT);
 
 module.exports = server;
