@@ -73,7 +73,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('deveria criar o usuario raupp', function (done) {
         chai.request(app)
-        .post('/user')
+        .post('/users')
         .send({nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35})
         .end(function (err, res) {
             expect(err).to.be.null;
@@ -85,7 +85,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('o usuario naoExiste não existe no sistema', function (done) {
         chai.request(app)
-        .get('/user/naoExiste')
+        .get('/users/naoExiste')
         .end(function (err, res) {
             expect(err.response.body.error).to.be.equal('User not found'); //possivelmente forma errada de verificar a mensagem de erro
             expect(res).to.have.status(404);
@@ -96,7 +96,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('o usuario raupp existe e é valido', function (done) {
         chai.request(app)
-        .get('/user/raupp')
+        .get('/users/raupp')
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
@@ -107,7 +107,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('deveria excluir o usuario raupp', function (done) {
         chai.request(app)
-        .delete('/user/raupp')
+        .delete('/users/raupp')
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
@@ -118,7 +118,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('o usuario raupp não deve existir mais no sistema', function (done) {
         chai.request(app)
-        .get('/user/raupp')
+        .get('/users/raupp')
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
