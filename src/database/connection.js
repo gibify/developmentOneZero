@@ -1,7 +1,7 @@
 const knex = require('knex');
 const path = require ('path');
 
-const db = knex({
+const connection = knex({
     client: 'sqlite3',
     connection: {
         filename: path.resolve(__dirname, 'database.sqlite'),
@@ -9,4 +9,4 @@ const db = knex({
     useNullAsDefault: true,
 });
 
-module.exports = db;
+module.exports = connection;
