@@ -89,7 +89,7 @@ module.exports = {
 
         try {
             await connection('users').where('id', id).del();
-            await id.delete();
+           
 
             ctx.status = 200;
             ctx.body = { message: 'User Deleted'};
